@@ -1,5 +1,6 @@
 function Header({openCart, drawerSum}) {
   const cartSum = drawerSum();
+  // const cartSum = 1000;
   return(
     <header className="d-flex justify-between align-center p-40">
     <div className="d-flex align-center">
