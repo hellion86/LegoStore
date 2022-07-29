@@ -1,6 +1,36 @@
-import Card from "../components/Card";
+import React from 'react';
+import Card from '../components/Card';
+// import { AppContext } from '../context'
 
-function Home({searchValue, clearSearch, onChangeSearchInput, onAddToCart, onAddToFavotite, items}) {
+function Home({
+  searchValue,
+  clearSearch,
+  onChangeSearchInput,
+  onAddToCart,
+  favorites,
+  onAddToFavotite,
+  items,
+  isLoading,
+}) {
+  // const { isItemAdded } = React.useContext(AppContext);
+  // console.log(items)
+  const renderItems = () => {
+    const filteredItems = items.filter((k) =>
+      k.title.toLowerCase().includes(searchValue.toLowerCase())
+    );
+    return (isLoading ? [...Array(8)] : filteredItems).map((ked, index) => (
+        <Card
+          loading={isLoading}
+          key={index}
+          keds={ked}
+          onAddToFavotite={() => onAddToFavotite(ked)}
+          onAddToCart={onAddToCart}
+          // added={isItemAdded(ked && ked.id)}
+          favorited={favorites.some((obj) => Number(obj.id) === Number(ked.id))}
+        />
+    ));
+  };
+
   return (
     <div className="content p-40">
       <div className="d-flex align-center justify-between mb-40">
@@ -24,21 +54,7 @@ function Home({searchValue, clearSearch, onChangeSearchInput, onAddToCart, onAdd
           ></input>
         </div>
       </div>
-      <div className="d-flex flex-wrap">
-        {items
-          .filter((k) =>
-            k.title.toLowerCase().includes(searchValue.toLowerCase())
-          )
-          .map((ked) => (
-            <div key={ked.id}>
-              <Card
-                keds={ked}
-                onAddToFavotite={() => onAddToFavotite(ked)}
-                onPlus={(obj) => onAddToCart(obj)}
-              />
-            </div>
-          ))}
-      </div>
+      <div className="d-flex flex-wrap">{renderItems()}</div>
     </div>
   );
 }

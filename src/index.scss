@@ -131,9 +131,6 @@ header {
   }
 }
 
-
-
-
 .greenButton {
   width: 100%;
   height: 55px;
@@ -144,22 +141,28 @@ header {
   font-size: 16px;
   font-weight: 500;
   transition: background 0.2s ease-in-out;
+  cursor: pointer;
+  
+  &:disabled {
+    background: #bebebe !important;
+    cursor: default;
+  }
 
   &:hover {
     background: lighten($color: #9dd558, $amount: 10%);
-    cursor: pointer;
   }
-
+    
   &:active {
     background: darken($color: #9dd558, $amount: 10%);
-    cursor: pointer;
   }
+
+ 
 }
 
 .cartItem {
   border: 1px solid #f3f3f3;
   border-radius: 20px;
-  // overflow: hidden;
+  overflow: hidden;
   padding: 20px;
 
  
@@ -214,7 +217,11 @@ header {
 
   .greenButton {
     position: relative;
-    
+   
+    &:disabled {
+      animation: button-loading 1.6s ease-in-out infinite; 
+    };
+
     &:hover {
       img {
         transform: translateX(10px);
@@ -227,4 +234,17 @@ header {
       top: 21px;
     }
   }
+}
+
+@keyframes button-loading {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+  }
+  
 }
