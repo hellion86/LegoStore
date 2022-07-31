@@ -49,36 +49,38 @@ const Card = ({
       ) : (
         <>
           <div className={styles.favorite}>
-            <img
-              // src={isFavorite ? 'img/liked.svg' : 'img/unliked.svg'}
-              src={
-                isItemFav(keds && keds.parentId)
-                  ? 'img/liked.svg'
-                  : 'img/unliked.svg'
-              }
-              alt="unliked"
-              // onClick={onClickFavorite}
-              onClick={() => onAddToFavotite(keds)}
-            />
+            {onAddToFavotite && (
+              <img
+                src={
+                  isItemFav(keds && keds.parentId)
+                    ? 'img/liked.svg'
+                    : 'img/unliked.svg'
+                }
+                alt="unliked"
+                onClick={() => onAddToFavotite(keds)}
+              />
+            )}
           </div>
-          <img width="100%" height={135} src={keds.imageUrl} alt="snikers_1" />
-          <h5>{keds.title}</h5>
+            <img width="100%" height={135} src={keds.imageUrl} alt="snikers_1" />
+            <h5>{keds.title}</h5>
           <div className="d-flex justify-between align-center">
-            <div className="d-flex flex-column">
+            <div className="d-flex mb-10 flex-column">
               <span>Цена</span>
               <b> {keds.price} руб.</b>
             </div>
-            <img
-              className={styles.plus}
-              // onClick={() => onClickPlus(keds.id)}
-              onClick={() => onAddToCart(keds)}
-              src={
-                isItemAdded(keds && keds.parentId)
-                  ? '/img/btn-checked.svg'
-                  : '/img/btn-plus.svg'
-              }
-              alt="add"
-            />
+            {onAddToCart && (
+              <img
+                className={styles.plus}
+                // onClick={() => onClickPlus(keds.id)}
+                onClick={() => onAddToCart(keds)}
+                src={
+                  isItemAdded(keds && keds.parentId)
+                    ? '/img/btn-checked.svg'
+                    : '/img/btn-plus.svg'
+                }
+                alt="add"
+              />
+            )}
           </div>
         </>
       )}

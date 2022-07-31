@@ -1,11 +1,11 @@
 import React from 'react';
 import axios from 'axios';
-import Info from './info';
-import { AppContext } from '../context';
+import Info from '../info';
+import useCart from '../../hooks/useCart';
+import styles from './Drawer.module.scss'
 
-function Drawer({ items = [], drawerSum, onRemoveFromCart }) {
-  const cartSum = drawerSum();
-  const { cartItems, setCartItems, openCart } = React.useContext(AppContext);
+const Drawer = ({ onRemoveFromCart, openCart, cartOpened}) => {
+  const {cartItems, setCartItems, totalPrice} = useCart();
   const [isOrderComplete, setIsOrderComplete] = React.useState(false);
   const [orderId, setOrderId] = React.useState(null);
   const [isLoading, setIsLoading] = React.useState(false);
@@ -36,8 +36,8 @@ function Drawer({ items = [], drawerSum, onRemoveFromCart }) {
 
   // console.log(cartItems)
   return (
-    <div className="overlay">
-      <div className="drawer">
+    <div className={`${styles.overlay} ${cartOpened ? styles.overlayVisible : "" }`}>
+      <div className={styles.drawer}>
         <h2 className="d-flex justify-between mb-30">
           Корзина{' '}
           <img
@@ -48,7 +48,7 @@ function Drawer({ items = [], drawerSum, onRemoveFromCart }) {
           ></img>
         </h2>
 
-        {items.length === 0 ? (
+        {cartItems.length === 0 ? (
           <Info
             title={isOrderComplete ? "Заказ оформлен!" :"Корзина пустая"}
             descripton={isOrderComplete ? `Ваш заказ #${orderId} скоро будет передан курьерской службе` : "Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ."}
@@ -56,8 +56,8 @@ function Drawer({ items = [], drawerSum, onRemoveFromCart }) {
           />
         ) : (
           <>
-            <div className="items">
-              {items.map((ked) => (
+            <div className="items flex">
+              {cartItems.map((ked) => (
                 <div
                   key={ked.id}
                   className="cartItem d-flex align-center mb-20"
@@ -84,13 +84,13 @@ function Drawer({ items = [], drawerSum, onRemoveFromCart }) {
                 <li>
                   <span>Итого:</span>
                   <div></div>
-                  <b>{cartSum} руб.</b>
+                  <b>{totalPrice} руб.</b>
                 </li>
 
                 <li>
                   <span>Налог 5%:</span>
                   <div></div>
-                  <b>{Math.ceil(cartSum * 0.05)} руб.</b>
+                  <b>{parseFloat(totalPrice / 100 * 5).toFixed(2)} руб.</b>
                 </li>
               </ul>
               <button disabled={isLoading} className="greenButton" onClick={onClickOrder}>
