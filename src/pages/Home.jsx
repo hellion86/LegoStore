@@ -7,27 +7,30 @@ function Home({
   clearSearch,
   onChangeSearchInput,
   onAddToCart,
-  favorites,
+  // favorites,
   onAddToFavotite,
   items,
   isLoading,
 }) {
   // const { isItemAdded } = React.useContext(AppContext);
-  // console.log(items)
+  // console.log(favorites)
+
   const renderItems = () => {
     const filteredItems = items.filter((k) =>
       k.title.toLowerCase().includes(searchValue.toLowerCase())
     );
     return (isLoading ? [...Array(8)] : filteredItems).map((ked, index) => (
-        <Card
-          loading={isLoading}
-          key={index}
-          keds={ked}
-          onAddToFavotite={() => onAddToFavotite(ked)}
-          onAddToCart={onAddToCart}
-          // added={isItemAdded(ked && ked.id)}
-          favorited={favorites.some((obj) => Number(obj.id) === Number(ked.id))}
-        />
+      <Card
+        loading={isLoading}
+        key={index}
+        keds={ked}
+        onAddToFavotite={onAddToFavotite}
+        onAddToCart={onAddToCart}
+        // added={isItemAdded(ked && ked.id)}
+        // favorited={favorites.some(
+        //   (obj) => Number(obj.parentId) === Number(ked.parentId)
+        // ) || false}
+      />
     ));
   };
 

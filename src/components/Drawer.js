@@ -22,7 +22,9 @@ function Drawer({ items = [], drawerSum, onRemoveFromCart }) {
  
       for (let i = 0; i < cartItems.length; i++) {
         const item = cartItems[i];
-        await axios.delete(`https://62e0ecaefa8ed271c48a1a66.mockapi.io/cart/${item.id}`);
+        // console.log(item)
+        const [cartIdKed] = cartItems.filter((i) => i.parentId === item.parentId);
+        await axios.delete(`https://62e0ecaefa8ed271c48a1a66.mockapi.io/cart/${cartIdKed.id}`);
         await delay(1000);
       }
 
@@ -32,7 +34,7 @@ function Drawer({ items = [], drawerSum, onRemoveFromCart }) {
     setIsLoading(false);
   }
 
-  // console.log(items)
+  // console.log(cartItems)
   return (
     <div className="overlay">
       <div className="drawer">
@@ -69,7 +71,7 @@ function Drawer({ items = [], drawerSum, onRemoveFromCart }) {
                     <b>{ked.price}</b>
                   </div>
                   <img
-                    onClick={() => onRemoveFromCart(ked.id)}
+                    onClick={() => onRemoveFromCart(ked.parentId)}
                     className="removeBtn"
                     src="/img/btn-remove.svg"
                     alt="Remove"

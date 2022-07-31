@@ -4,7 +4,8 @@ body {
   // font-family: 'Inter', system-ui;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color:#e7f6ff
+  background-color:#e7f6ff;
+  
 }
 
 * {
@@ -106,6 +107,7 @@ header {
   height: 100%;
   background-color: rgba(0,0,0,0.3);
   z-index: 1;
+  
 }
 
 .drawer {
@@ -119,6 +121,7 @@ header {
   display: flex;
   flex-direction: column;
 
+  
   .items {
     overflow: auto;
     flex: 1;
