@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom';
 import useCart from '../hooks/useCart';
 
-function Header({ openCart }) {
-  const {totalPrice} = useCart();
+const Header = ({ openCart }) => {
+  const { totalPrice } = useCart();
+
   return (
     <header className="d-flex justify-between align-center p-40">
       <Link to="/">
@@ -26,11 +27,16 @@ function Header({ openCart }) {
         </li>
         <li className="cu-p">
           <Link to="/orders">
-            <img width={18} heigth={18} src="/img/user.svg" alt="пользователь" />
+            <img
+              width={18}
+              heigth={18}
+              src="/img/user.svg"
+              alt="пользователь"
+            />
           </Link>
         </li>
       </ul>
     </header>
   );
-}
+};
 export default Header;

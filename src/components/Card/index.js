@@ -24,24 +24,10 @@ const Card = ({
   keds,
   onAddToCart,
   onAddToFavotite,
-  // favorited = false,
   loading = false,
 }) => {
   const { isItemAdded, isItemFav } = React.useContext(AppContext);
-  // const [isFavorite, setIsFavorite] = React.useState(favorited);
 
-  // const onClickFavorite = () => {
-  //   onAddToFavotite({ ...keds });
-  //   // setIsFavorite(!isFavorite);
-  // };
-
-  // console.log(favorited)
-  // const onClickPlus = (id) => {
-  //   console.log(id)
-  //   // onPlus({ ...keds });
-  //   // setAdded(!isAdded);
-  // };
-  // console.log(keds)
   return (
     <div className={styles.card}>
       {loading ? (
@@ -71,7 +57,6 @@ const Card = ({
             {onAddToCart && (
               <img
                 className={styles.plus}
-                // onClick={() => onClickPlus(keds.id)}
                 onClick={() => onAddToCart(keds)}
                 src={
                   isItemAdded(keds && keds.parentId)

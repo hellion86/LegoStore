@@ -1,20 +1,15 @@
 import React from 'react';
 import Card from '../components/Card';
-// import { AppContext } from '../context'
 
-function Home({
+const Home = ({
   searchValue,
   clearSearch,
   onChangeSearchInput,
   onAddToCart,
-  // favorites,
   onAddToFavotite,
   items,
   isLoading,
-}) {
-  // const { isItemAdded } = React.useContext(AppContext);
-  // console.log(favorites)
-
+}) => {
   const renderItems = () => {
     const filteredItems = items.filter((k) =>
       k.title.toLowerCase().includes(searchValue.toLowerCase())
@@ -26,10 +21,6 @@ function Home({
         keds={ked}
         onAddToFavotite={onAddToFavotite}
         onAddToCart={onAddToCart}
-        // added={isItemAdded(ked && ked.id)}
-        // favorited={favorites.some(
-        //   (obj) => Number(obj.parentId) === Number(ked.parentId)
-        // ) || false}
       />
     ));
   };
@@ -60,6 +51,6 @@ function Home({
       <div className="d-flex flex-wrap">{renderItems()}</div>
     </div>
   );
-}
+};
 
 export default Home;

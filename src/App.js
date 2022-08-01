@@ -25,8 +25,8 @@ const App = () => {
   // Fetch data from bd
   React.useEffect(() => {
     const loadData = async () => {
+      setIsLoading(true);
       try {
-        setIsLoading(true);
         const [cartData, favorData, itemsData] = await Promise.all([
           axios.get(routes.cart),
           axios.get(routes.favorites),

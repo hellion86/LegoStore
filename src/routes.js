@@ -1,4 +1,3 @@
-
 const apiPath = 'https://62e0ecaefa8ed271c48a1a66.mockapi.io';
 
 export const routes = {
@@ -6,5 +5,4 @@ export const routes = {
   favorites: `${apiPath}/favorites`,
   orders: `${apiPath}/orders`,
   items: `${apiPath}/items`,
-
-}
+};

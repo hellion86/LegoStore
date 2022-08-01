@@ -1,8 +1,9 @@
 import React from 'react';
 import axios from 'axios';
-import Info from '../info';
+import Info from '../CartInfo';
 import useCart from '../../hooks/useCart';
 import styles from './Drawer.module.scss'
+import { routes } from '../../routes';
 
 const Drawer = ({ onRemoveFromCart, openCart, cartOpened}) => {
   const {cartItems, setCartItems, totalPrice} = useCart();
@@ -15,16 +16,15 @@ const Drawer = ({ onRemoveFromCart, openCart, cartOpened}) => {
   const onClickOrder = async () => {
     try {
       setIsLoading(true);
-      const {data} = await axios.post('https://62e0ecaefa8ed271c48a1a66.mockapi.io/orders', { items: cartItems});
+      const {data} = await axios.post(routes.orders, { items: cartItems});
       setOrderId(data.id);
       setIsOrderComplete(true);
       setCartItems([]);
  
       for (let i = 0; i < cartItems.length; i++) {
         const item = cartItems[i];
-        // console.log(item)
         const [cartIdKed] = cartItems.filter((i) => i.parentId === item.parentId);
-        await axios.delete(`https://62e0ecaefa8ed271c48a1a66.mockapi.io/cart/${cartIdKed.id}`);
+        await axios.delete(`${routes.cart}/${cartIdKed.id}`);
         await delay(1000);
       }
 
@@ -34,7 +34,6 @@ const Drawer = ({ onRemoveFromCart, openCart, cartOpened}) => {
     setIsLoading(false);
   }
 
-  // console.log(cartItems)
   return (
     <div className={`${styles.overlay} ${cartOpened ? styles.overlayVisible : "" }`}>
       <div className={styles.drawer}>
