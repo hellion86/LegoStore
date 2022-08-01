@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import styles from './Card.module.scss';
 import ContentLoader from 'react-content-loader';
 import { AppContext } from '../../context';
@@ -27,6 +28,7 @@ const Card = ({
   loading = false,
 }) => {
   const { isItemAdded, isItemFav } = React.useContext(AppContext);
+  const { t } = useTranslation();
 
   return (
     <div className={styles.card}>
@@ -51,7 +53,7 @@ const Card = ({
             <h5>{keds.title}</h5>
           <div className="d-flex justify-between align-center">
             <div className="d-flex mb-10 flex-column">
-              <span>Цена</span>
+              <span>{t('card.price')}</span>
               <b> {keds.price} руб.</b>
             </div>
             {onAddToCart && (
