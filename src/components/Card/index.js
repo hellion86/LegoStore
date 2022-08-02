@@ -44,17 +44,17 @@ const Card = ({
                     ? 'img/liked.svg'
                     : 'img/unliked.svg'
                 }
-                alt="unliked"
+                alt={t('imgAlt.unliked')}
                 onClick={() => onAddToFavotite(keds)}
               />
             )}
           </div>
-            <img width="100%" height={135} src={keds.imageUrl} alt="snikers_1" />
+            <img width="100%" height={135} src={keds.imageUrl} alt={t('imgAlt.snikers')} />
             <h5>{keds.title}</h5>
           <div className="d-flex justify-between align-center">
             <div className="d-flex mb-10 flex-column">
               <span>{t('card.price')}</span>
-              <b> {keds.price} руб.</b>
+              <b> {keds.price}{' '}{t('money')}</b>
             </div>
             {onAddToCart && (
               <img
@@ -65,7 +65,7 @@ const Card = ({
                     ? '/img/btn-checked.svg'
                     : '/img/btn-plus.svg'
                 }
-                alt="add"
+                alt={t('imgAlt.add')}
               />
             )}
           </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { Route, Routes } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import Home from './pages/Home';
 import Favorites from './pages/Favorites';
 import Header from './components/Header';
@@ -16,6 +17,7 @@ const App = () => {
   const [cartOpened, setCartOpened] = React.useState(false);
   const [favorites, setFavorites] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
+  const { t } = useTranslation();
 
   // help functions, open/close etc.
   const openCart = () => setCartOpened(!cartOpened);
@@ -38,10 +40,11 @@ const App = () => {
         setItems(itemsData.data);
         setIsLoading(false);
       } catch (error) {
-        alert('Ошибка при загрузке данных');
+        alert(t('errors.mainLoad'));
       }
     };
     loadData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   // main cart functions
   const onAddToCart = async (ked) => {
@@ -62,7 +65,7 @@ const App = () => {
         setCartItems((prev) => [...prev, data]);
       }
     } catch (err) {
-      alert('не удалось добавить товар в корзину');
+      alert(t('errors.addToBasket'));
     }
   };
 
@@ -82,7 +85,7 @@ const App = () => {
         setFavorites((prev) => [...prev, data]);
       }
     } catch (err) {
-      alert('Не удалось добавить в закладки');
+      alert(t('errors.addToFav'));
     }
   };
 
@@ -95,7 +98,7 @@ const App = () => {
       const [cartIdKed] = cartItems.filter((i) => i.parentId === id);
       axios.delete(`${routes.cart}/${cartIdKed.id}`);
     } catch (err) {
-      alert('Не удалось удалить товар из корзины');
+      alert(t('errors.removeFromBasket'));
     }
   };
 

@@ -1,7 +1,8 @@
 import React from 'react';
 import axios from 'axios';
-import Card from '../components/Card';
+import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
+import Card from '../components/Card';
 import { routes } from '../routes';
   
   // todo
@@ -13,7 +14,8 @@ import { routes } from '../routes';
 const Orders = () => {
   const [orders, setOrders] = useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
- 
+  const { t } = useTranslation();
+
   React.useEffect(() => {
     const loadOrders = async () => {
       try {
@@ -23,10 +25,11 @@ const Orders = () => {
         setOrders(concatOrders);
         setIsLoading(false);
       } catch (err) {
-        alert('Не удалось выполнить загрузку заказов');
+        alert(t('errors.orderErr'));
       }
     };
     loadOrders();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const renderItems = () => {
@@ -38,7 +41,7 @@ const Orders = () => {
   return (
     <div className="content p-40">
       <div className="d-flex align-center justify-between mb-40">
-        <h1>Мои Заказы</h1>
+        <h1>{t('orderPage.header')}</h1>
       </div>
       <div className="d-flex flex-wrap">{renderItems()}</div>
     </div>
