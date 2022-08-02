@@ -54,6 +54,8 @@ export default {
     },
     favoritesPage: {
       header: 'My bookmarks',
+      title: "There's nothing here...",
+      fav: "You haven't added anything to your favorites yet",
     },
   },
 };

@@ -1,6 +1,7 @@
 import React from 'react';
 import Card from '../components/Card';
 import { useTranslation } from 'react-i18next';
+import Info from '../components/CartInfo';
 
 // todo выводим сообщение что нет закладок или выводим закладки
 const Favorites = ({ favorites, onAddToFavotite, onAddToCart }) => {
@@ -12,15 +13,24 @@ const Favorites = ({ favorites, onAddToFavotite, onAddToCart }) => {
         <h1>{t('favoritesPage.header')}</h1>
       </div>
       <div className="d-flex flex-wrap">
-        {favorites.map((ked) => (
-          <div key={ked.id}>
-            <Card
-              keds={ked}
-              onAddToFavotite={() => onAddToFavotite(ked)}
-              onAddToCart={() => onAddToCart(ked)}
-            />
-          </div>
-        ))}
+        {favorites.length === 0 ? (
+          <Info
+            title={t('favoritesPage.title')}
+            descripton={t('favoritesPage.fav')}
+            image={'/img/empty-cart.jpg'}
+            button={false}
+          />
+        ) : (
+          favorites.map((ked) => (
+            <div key={ked.id}>
+              <Card
+                keds={ked}
+                onAddToFavotite={() => onAddToFavotite(ked)}
+                onAddToCart={() => onAddToCart(ked)}
+              />
+            </div>
+          ))
+        )}
       </div>
     </div>
   );

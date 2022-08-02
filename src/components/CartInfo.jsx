@@ -2,7 +2,7 @@ import React from 'react';
 import { AppContext } from '../context';
 import { useTranslation } from 'react-i18next';
 
-const Info = ({ title, image,  descripton }) => {
+const Info = ({ title, image,  descripton, button = true }) => {
   const {  openCart } = React.useContext(AppContext)
   const { t } = useTranslation();
 
@@ -18,10 +18,10 @@ const Info = ({ title, image,  descripton }) => {
       <p className="opacity-6">
         {descripton}
       </p>
-      <button className="greenButton" onClick={openCart}>
+      {button && <button className="greenButton" onClick={openCart}>
         <img src="/img/arrow.svg" alt={t('imgAlt.back')} />
         {t('cartInfo.moveBack')}
-      </button>
+      </button>}
     </div>
   );
 };
