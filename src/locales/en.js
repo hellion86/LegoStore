@@ -56,6 +56,7 @@ export default {
       orderSumm: 'Order amount: ',
       ordersTotal: 'Total price: ',
       ordersCount: 'Total orders:',
+      orderConfirmRemove: 'Order remove',
     },
     favoritesPage: {
       header: 'My bookmarks',

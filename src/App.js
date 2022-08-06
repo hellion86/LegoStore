@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { Route, Routes } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { ToastContainer, toast } from 'react-toastify';
 import Home from './pages/Home';
 import Favorites from './pages/Favorites';
 import Header from './components/Header';
@@ -23,8 +24,9 @@ const App = () => {
   const openCart = () => setCartOpened(!cartOpened);
   const clearSearch = () => setSearchValue('');
   const onChangeSearchInput = (e) => setSearchValue(e.target.value);
+  const notify = (msg) => toast.error(msg);
 
-  // Fetch data from bd
+  // Fetch data from DB
   React.useEffect(() => {
     const loadData = async () => {
       setIsLoading(true);
@@ -40,7 +42,7 @@ const App = () => {
         setItems(itemsData.data);
         setIsLoading(false);
       } catch (error) {
-        alert(t('errors.mainLoad'));
+        notify(t('errors.mainLoad'));
       }
     };
     loadData();
@@ -65,7 +67,7 @@ const App = () => {
         setCartItems((prev) => [...prev, data]);
       }
     } catch (err) {
-      alert(t('errors.addToBasket'));
+      notify(t('errors.addToBasket'));
     }
   };
 
@@ -85,7 +87,7 @@ const App = () => {
         setFavorites((prev) => [...prev, data]);
       }
     } catch (err) {
-      alert(t('errors.addToFav'));
+      notify(t('errors.addToFav'));
     }
   };
 
@@ -98,7 +100,7 @@ const App = () => {
       const [cartIdKed] = cartItems.filter((i) => i.parentId === id);
       axios.delete(`${routes.cart}/${cartIdKed.id}`);
     } catch (err) {
-      alert(t('errors.removeFromBasket'));
+      notify(t('errors.removeFromBasket'));
     }
   };
 
@@ -158,6 +160,7 @@ const App = () => {
           <Route path="/orders" exact element={<Orders />} />
         </Routes>
       </div>
+    <ToastContainer />
     </AppContext.Provider>
   );
 };

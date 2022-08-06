@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import ReactDOM from 'react-dom/client';
 import { I18nextProvider, initReactI18next } from 'react-i18next';
+import 'react-toastify/dist/ReactToastify.css';
 import i18n from 'i18next';
 import ru from './locales/ru';
 import en from './locales/en';

@@ -57,6 +57,7 @@ export default {
       orderSumm: 'Сумма заказа: ',
       ordersTotal: 'На сумму: ',
       ordersCount: 'Всего заказов:',
+      orderConfirmRemove: 'Заказ удален',
     },
     favoritesPage: {
       header: 'Мои закладки',

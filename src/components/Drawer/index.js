@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
+import { ToastContainer, toast } from 'react-toastify';
 import Info from '../CartInfo';
 import useCart from '../../hooks/useCart';
 import styles from './Drawer.module.scss';
@@ -11,6 +12,7 @@ const Drawer = ({ onRemoveFromCart, openCart, cartOpened }) => {
   const [isOrderComplete, setIsOrderComplete] = React.useState(false);
   const [orderId, setOrderId] = React.useState(null);
   const [isLoading, setIsLoading] = React.useState(false);
+  const notify = (msg) => toast.error(msg);
   const { t } = useTranslation();
   const delay = (ms) => new Promise((resolve) => setTimeout(resolve), ms);
 
@@ -31,7 +33,7 @@ const Drawer = ({ onRemoveFromCart, openCart, cartOpened }) => {
         await delay(1000);
       }
     } catch (err) {
-      alert('Не удалось оформить заказ, попробуйте позже...');
+      notify(t('errors.addToBasket'));
     }
     setIsLoading(false);
   };
@@ -121,6 +123,7 @@ const Drawer = ({ onRemoveFromCart, openCart, cartOpened }) => {
           </>
         )}
       </div>
+      <ToastContainer />
     </div>
   );
 };

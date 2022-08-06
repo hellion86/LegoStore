@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
+import { ToastContainer, toast } from 'react-toastify';
 import { useState } from 'react';
 import Card from '../Card';
 import { routes } from '../../routes';
@@ -10,6 +11,7 @@ const Orders = () => {
   const [orders, setOrders] = useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
   const { t } = useTranslation();
+  const notify = (msg) => toast.error(msg);
 
   const ordersTotal = (ord) =>
     ord
@@ -27,19 +29,23 @@ const Orders = () => {
         setOrders(data);
         setIsLoading(false);
       } catch (err) {
-        alert(t('errors.orderLoad'));
+        notify(t('errors.orderLoad'));
       }
     };
     loadOrders();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+ 
   const removeOrder = async (id) => {
     try {
       setOrders(orders.filter((order) => order.id !== id));
       axios.delete(`${routes.orders}/${id}`);
+      toast.warn(t('orderPage.orderConfirmRemove'), {
+        icon: false
+      });
     } catch (error) {
-      alert(t('errors.orderRemove'));
+      notify(t('errors.orderLoad'));
     }
   };
 
@@ -57,7 +63,9 @@ const Orders = () => {
         <div key={index} className={styles.orderItem}>
           <div className="d-flex justify-between">
             <h3>
-              {t('orderPage.orderNum')}{order.id}{" "}{t('orderPage.orderSumm')}{" "}{orderPrice(order.items)}{" "}{t('money')}
+              {t('orderPage.orderNum')}
+              {order.id} {t('orderPage.orderSumm')} {orderPrice(order.items)}{' '}
+              {t('money')}
             </h3>
             <img
               onClick={() => removeOrder(order.id)}
@@ -75,18 +83,26 @@ const Orders = () => {
       ));
     }
   };
-  return (
-    <div className="content p-40">
-      <div className="d-flex align-center justify-between mb-40">
-        <h1>{t('orderPage.header')}</h1>
-        <div>
-          <p>{t('orderPage.ordersCount')}{" "}{orders.length}</p>
-          <p>{t('orderPage.ordersTotal')}{" "}{ordersTotal(orders)}{" "}{t('money')}</p>
-        </div>
-      </div>
 
-      <div className="flex-wrap">{renderItems()}</div>
-    </div>
+  return (
+    <>
+      <div className="content p-40">
+        <div className="d-flex align-center justify-between mb-40">
+          <h1>{t('orderPage.header')}</h1>
+          <div>
+            <p>
+              {t('orderPage.ordersCount')} {orders.length}
+            </p>
+            <p>
+              {t('orderPage.ordersTotal')} {ordersTotal(orders)} {t('money')}
+            </p>
+          </div>
+        </div>
+
+        <div className="flex-wrap">{renderItems()}</div>
+      </div>
+      <ToastContainer />
+    </>
   );
 };
 
