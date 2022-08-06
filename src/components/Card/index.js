@@ -49,7 +49,7 @@ const Card = ({
               />
             )}
           </div>
-            <img width="100%" height={135} src={keds.imageUrl} alt={t('imgAlt.snikers')} />
+            <img width="100%" height={150} src={keds.imageUrl} alt={t('imgAlt.snikers')} />
             <h5>{keds.title}</h5>
           <div className="d-flex justify-between align-center">
             <div className="d-flex mb-10 flex-column">

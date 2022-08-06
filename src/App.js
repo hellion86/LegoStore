@@ -6,7 +6,7 @@ import Home from './pages/Home';
 import Favorites from './pages/Favorites';
 import Header from './components/Header';
 import Drawer from './components/Drawer';
-import Orders from './pages/Orders';
+import Orders from './components/Order';
 import { AppContext } from './context';
 import { routes } from './routes';
 

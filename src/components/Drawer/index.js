@@ -101,13 +101,13 @@ const Drawer = ({ onRemoveFromCart, openCart, cartOpened }) => {
                 <li>
                   <span>{t('cartInfo.total')}</span>
                   <div></div>
-                  <b>{totalPrice}{' '}{t('money')}.</b>
+                  <b>{totalPrice}{' '}{t('money')}</b>
                 </li>
 
                 <li>
                   <span>{t('cartInfo.tax')}</span>
                   <div></div>
-                  <b>{parseFloat((totalPrice / 100) * 5).toFixed(2)}{' '}{t('money')}.</b>
+                  <b>{parseFloat((totalPrice / 100) * 5).toFixed(2)}{' '}{t('money')}</b>
                 </li>
               </ul>
               <button

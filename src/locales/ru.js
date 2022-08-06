@@ -3,7 +3,8 @@ export default {
   translation: {
     money: 'руб.',
     errors: {
-      orderErr: 'Не удалось выполнить загрузку заказов',
+      orderLoad: 'Не удалось выполнить загрузку заказов',
+      orderRemove: 'Не удалось удалить заказ',
       mainLoad: 'Ошибка при загрузке данных',
       addToBasket: 'Не удалось добавить товар в корзину',
       addToFav: 'Не удалось добавить в закладки',
@@ -47,11 +48,15 @@ export default {
       price: 'Цена',
     },
     header: {
-      headLogo: 'React snikers',
-      headSlogan: 'Магазин лучших кроссовок',
+      headLogo: 'React LEGO',
+      headSlogan: 'Магазин лучшего конструктора',
     },
     orderPage: {
       header: 'Мои заказы',
+      orderNum: 'Заказ #',
+      orderSumm: 'Сумма заказа: ',
+      ordersTotal: 'На сумму: ',
+      ordersCount: 'Всего заказов:',
     },
     favoritesPage: {
       header: 'Мои закладки',

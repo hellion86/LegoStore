@@ -3,7 +3,8 @@ export default {
   translation: {
     money: '$  ',
     errors: {
-      orderErr: 'Failed to load orders',
+      orderLoad: 'Failed to load orders',
+      orderRemove: 'Failed to remove order',
       mainLoad: 'Error loading data',
       addToBasket: 'Failed to add item to cart',
       addToFav: 'Failed to add bookmark',
@@ -46,11 +47,15 @@ export default {
       price: 'Price',
     },
     header: {
-      headLogo: 'React snikers',
-      headSlogan: 'Shop the best sneakers',
+      headLogo: 'React LEGO',
+      headSlogan: 'Shop the best brick`s',
     },
     orderPage: {
       header: 'My orders',
+      orderNum: 'Order #',
+      orderSumm: 'Order amount: ',
+      ordersTotal: 'Total price: ',
+      ordersCount: 'Total orders:',
     },
     favoritesPage: {
       header: 'My bookmarks',
