@@ -29,7 +29,8 @@ App will ready at localhost:3000
 ### Using
 * Webpack
 * React, axios
-* mockapi as DB 
+* Mockapi as DB 
+* Skeleton react
 * React-Toastify
-* react-i18next
+* React-i18next
 * Deploy [vercel](https://lego-store-sigma.vercel.app/)
