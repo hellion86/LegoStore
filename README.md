@@ -24,4 +24,4 @@ App will start on localhost:3000
 * mockapi as DB 
 * React-Toastify
 * react-i18next
-* Deploy -----
+* Deploy [vercel](https://lego-store-sigma.vercel.app/)
