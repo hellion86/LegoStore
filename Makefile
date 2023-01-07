@@ -1,8 +1,6 @@
 install: 
-	install-deps
-
+	npm ci
 start: 
 	npm start
- 
-.PHONY: test
+
 
